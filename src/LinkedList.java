@@ -1,58 +1,52 @@
-public class LinkedList {
-    Node head = null;
+public class LinkedList<T> {
+    Node<T> head = null;
 
-    public void Ins(int data){
-        Node node = new Node(data);
-        node.data = data;
-        node.next = null;
+    // Notice how the method parameters now use 'T'
+    public void insert(T data) {
+        Node<T> node = new Node<>(data);
 
-        if (head == null){
+        if (head == null) {
             head = node;
-        }
-        else {
-            Node n = head;
-            while (n.next != null){
+        } else {
+            Node<T> n = head;
+            while (n.next != null) {
                 n = n.next;
             }
             n.next = node;
         }
     }
-    public void Show(){
-        Node node = head;
-        if (node == null){
+
+    public void printLinkedList() {
+        Node<T> node = head;
+        if (node == null) {
             System.out.println("linked list is null");
-        }
-        else {
-            while (node.next != null){
-                System.out.print(node.data+" ");
-                //System.out.print(node+" ");
-                //System.out.print(System.identityHashCode(node)+" ");
+        } else {
+            while (node.next != null) {
+                System.out.print(node.data + " ");
                 node = node.next;
             }
             System.out.println(node.data);
-            //System.out.println(node);
-            //System.out.println(System.identityHashCode(node)+" ");
         }
     }
 
-    public void Ias(int data){
-        Node node = new Node(data);
+    public void insertAtStart(T data){
+        Node<T> node = new Node<>(data);
         node.data = data;
         node.next = head;
 
         head = node;
     }
 
-    public void Ibi(int index, int data){
-        Node node = new Node(data);
+    public void insertByIndex(int index, T data){
+        Node<T> node = new Node<>(data);
         node.data = data;
         node.next = null;
 
         if (index == 0){
-            Ias(data);
+            insertAtStart(data);
         }
         else {
-            Node n = head;
+            Node<T> n = head;
             for (int i = 0; i < index - 1; i++) {
                 n = n.next;
             }
@@ -61,13 +55,13 @@ public class LinkedList {
         }
     }
 
-    public void DelA(int index){
+    public void deliteAt(int index){
         if (index == 0){
             head = head.next;
         }
         else {
-            Node n = head;
-            Node n1 = null;
+            Node<T> n = head;
+            Node<T> n1 = null;
             for (int i = 0; i < index - 1; i++) {
                 n = n.next;
             }
@@ -77,8 +71,8 @@ public class LinkedList {
         }
     }
 
-    public void Showbi(int index){
-        Node node = head;
+    public void showByIndex(int index){
+        Node<T> node = head;
 
         if (index == 0){
             System.out.println(node.data);
@@ -92,25 +86,33 @@ public class LinkedList {
     }
 
     //just a simple bubble-sort
-    public void Sort() {
-        Node current = head;
-        while (current != null) {
-            Node index = current.next;
-            while (index != null) {
-                if (current.data > index.data) {
-                    int temp = current.data;
-                    current.data = index.data;
-                    index.data = temp;
-                }
-                index = index.next;
-            }
-            current = current.next;
+    public void sort() {
+        if (head == null || head.next == null) {
+            return;
         }
+
+        boolean swapped;
+        do {
+            swapped = false;
+            Node<T> current = head;
+            Node<T> previous = null;
+
+            while (current.next != null) {
+                if (((Comparable<T>) current.data).compareTo(current.next.data) > 0) {
+                    T temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                    swapped = true;
+                }
+                previous = current;
+                current = current.next;
+            }
+        } while (swapped);
     }
 
-    public void Size(){
+    public void size(){
         int size = 0;
-        Node node = head;
+        Node<T> node = head;
         while (node.next != null){
             size++;
             node = node.next;
@@ -119,10 +121,10 @@ public class LinkedList {
         System.out.println(size);
     }
 
-    public void Clear() {
-        Node current = null;
+    public void clear() {
+        Node<T> current = null;
         while (current != null){
-            Node temp = current.next;
+            Node<T> temp = current.next;
             current = temp;
         }
         head = null;
