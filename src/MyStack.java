@@ -1,39 +1,58 @@
-public class MyStack {
-    int stack[] = new int[5];
-    int top = 0;
-    public void push(int data){
-        if (top==4){
-            System.out.println("Stack it full");
+class MyStack<T> {
+    private T[] arr;
+    private int top;
+    private int capacity;
+
+    public MyStack(int size) {
+        arr = (T[]) new Object[size]; // Create generic array
+        capacity = size;
+        top = -1;
+    }
+
+    public void push(T item) {
+        if (isFull()) {
+            throw new RuntimeException("Stack Overflow");
         }
-        stack[top] = data;
-        top++;
+        arr[++top] = item;
     }
 
-    public void pprint(){
-        for (int n : stack){
-            System.out.print(n+" ");
+    public T pop() {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack Underflow");
         }
+        return arr[top--];
     }
 
-    public int pop(){
-        int data;
-        top--;
-        data = stack[top];
-        stack[top] = 0;
-        return data;
+    public T peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack is empty");
+        }
+        return arr[top];
     }
 
-    public int peek(){
-        int data;
-        data = stack[top-1];
-        return data;
+    public boolean isEmpty() {
+        return top == -1;
     }
 
-    public int sizest(){
-        return top;
+    public boolean isFull() {
+        return top == capacity - 1;
     }
 
-    public boolean isEmpty(){
-        return top<=0;
+    public void printStack() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return;
+        }
+
+        MyStack<T> tempStack = new MyStack<>(capacity);
+        while (!isEmpty()) {
+            T element = pop();
+            System.out.print(element + " ");
+            tempStack.push(element);
+        }
+
+        while(!tempStack.isEmpty()) {
+            push(tempStack.pop());
+        }
     }
 }

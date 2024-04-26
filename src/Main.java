@@ -49,21 +49,20 @@ public class Main {
         list_1.printLinkedList();
         System.out.println("----------------------------------------");
 
-
-        MyStack nums = new MyStack();
-        nums.push(15);
-        nums.push(8);
-
-        System.out.println(nums.peek());
-
-        nums.push(10);
-
-        System.out.println(nums.sizest());
-
-        nums.pprint();
-
+        System.out.println("Creating a stack");
+        MyStack<Integer> stack = new MyStack<>(5);
+        System.out.println("adding 10 20 30 40 10");
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(13);
+        stack.printStack();
         System.out.println();
-
-        System.out.println("empty "+nums.isEmpty());
+        System.out.println("----------------------------------------");
+        System.out.println("The highest element is "+stack.peek());
+        System.out.println("----------------------------------------");
+        System.out.println("Delliting the highest element  "+stack.pop());
+        stack.printStack();
     }
 }
