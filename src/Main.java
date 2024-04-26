@@ -47,5 +47,23 @@ public class Main {
         System.out.println("Clearing linked list");
         list_1.Clear();
         list_1.Show();
+        System.out.println("----------------------------------------");
+
+
+        MyStack nums = new MyStack();
+        nums.push(15);
+        nums.push(8);
+
+        System.out.println(nums.peek());
+
+        nums.push(10);
+
+        System.out.println(nums.sizest());
+
+        nums.pprint();
+
+        System.out.println();
+
+        System.out.println("empty "+nums.isEmpty());
     }
 }
