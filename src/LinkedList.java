@@ -38,7 +38,7 @@ public class LinkedList<T> implements MyList<T> {
         node.next = null;
 
         if (index == 0){
-            insertAtStart(data);
+            addFirst(data);
         }
         else {
             Node<T> n = head;
@@ -146,6 +146,25 @@ public class LinkedList<T> implements MyList<T> {
         return null;
     }
 
+    @Override
+    public T getFirst() {
+        if (head == null) {
+            System.out.println("List is empty");
+        }
+        return head.data;
+    }
+
+    @Override
+    public T getLast() {
+        if (head == null) {
+            System.out.println("List is empty");
+        }
+        Node<T> current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.data;
+    }
     //just a simple bubble-sort
     @Override
     public void sort() {
