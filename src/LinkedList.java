@@ -13,7 +13,7 @@ public class LinkedList<T> implements MyList<T> {
 
 
     @Override
-    public void add(T item) {
+    public void add(T data) {
         Node<T> node = new Node<>(data);
 
         if (head == null) {
@@ -227,6 +227,11 @@ public class LinkedList<T> implements MyList<T> {
     @Override
     public boolean exists(Object object) {
         return false;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
     }
 
 

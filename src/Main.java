@@ -5,33 +5,33 @@ public class Main {
         //Ins(insert)
         System.out.println("----------------------------------------");
         System.out.println("adding 5 6 7 9");
-        list_1.insert(5);
-        list_1.insert(6);
-        list_1.insert(7);
-        list_1.insert(9);
+        list_1.add(5);
+        list_1.add(6);
+        list_1.add(7);
+        list_1.add(9);
         list_1.printLinkedList();
         //Ins(insert at start)
         System.out.println("----------------------------------------");
         System.out.println("adding 11 at the start");
-        list_1.insertAtStart(11);
+        list_1.addFirst(11);
         list_1.printLinkedList();
         //Ini(insert by index)
         System.out.println("----------------------------------------");
         System.out.println("adding 55 at the 0 index");
-        list_1.insertByIndex(0,55);
+        list_1.add(0,55);
         list_1.printLinkedList();
         //DelA(delate at)
         System.out.println("----------------------------------------");
         System.out.println("delliting the 2 element");
-        list_1.deliteAt(2);
+        list_1.remove(2);
         list_1.printLinkedList();
         //Show means print all linked list
         System.out.println("----------------------------------------");
         list_1.printLinkedList();
         //Showbi(show by index)
         System.out.println("----------------------------------------");
-        list_1.showByIndex(0);
-        list_1.showByIndex(3);
+        list_1.get(0);
+        list_1.get(3);
         list_1.printLinkedList();
         //Sort == sort
         System.out.println("----------------------------------------");
