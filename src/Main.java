@@ -47,8 +47,10 @@ public class Main {
         System.out.println("Clearing linked list");
         list_1.clear();
         list_1.printLinkedList();
-        System.out.println("----------------------------------------");
 
+
+
+        System.out.println("----------------------------------------");
         System.out.println("Creating a stack");
         MyStack<Integer> stack = new MyStack<>(5);
         System.out.println("adding 10 20 30 40 10");
@@ -64,5 +66,17 @@ public class Main {
         System.out.println("----------------------------------------");
         System.out.println("Delliting the highest element  "+stack.pop());
         stack.printStack();
+
+        System.out.println();
+        System.out.println("----------------------------------------");
+        System.out.println("Creating a arraylist");
+        ArrayList myArrayList = new ArrayList<>();
+
+        myArrayList.add(1);
+        myArrayList.add(1);
+        myArrayList.add(1);
+        myArrayList.add(1);
+        myArrayList.add(1);
+
     }
 }
