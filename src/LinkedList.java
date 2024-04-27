@@ -1,8 +1,19 @@
-public class LinkedList<T> {
-    Node<T> head = null;
+public class LinkedList<T> implements MyList<T> {
+    private Node<T> head;
+    private int size;
 
-    // Notice how the method parameters now use 'T'
-    public void insert(T data) {
+    public LinkedList() {
+        head = null;
+        size = 0;
+    }
+
+
+    private void checker(int index){
+    }
+
+
+    @Override
+    public void add(T item) {
         Node<T> node = new Node<>(data);
 
         if (head == null) {
@@ -16,28 +27,12 @@ public class LinkedList<T> {
         }
     }
 
-    public void printLinkedList() {
-        Node<T> node = head;
-        if (node == null) {
-            System.out.println("linked list is null");
-        } else {
-            while (node.next != null) {
-                System.out.print(node.data + " ");
-                node = node.next;
-            }
-            System.out.println(node.data);
-        }
+    @Override
+    public void set(int index, T item) {
     }
 
-    public void insertAtStart(T data){
-        Node<T> node = new Node<>(data);
-        node.data = data;
-        node.next = head;
-
-        head = node;
-    }
-
-    public void insertByIndex(int index, T data){
+    @Override
+    public void add(int index, T data) {
         Node<T> node = new Node<>(data);
         node.data = data;
         node.next = null;
@@ -55,7 +50,46 @@ public class LinkedList<T> {
         }
     }
 
-    public void deliteAt(int index){
+    public void printLinkedList() {
+        Node<T> node = head;
+        if (node == null) {
+            System.out.println("linked list is null");
+        } else {
+            while (node.next != null) {
+                System.out.print(node.data + " ");
+                node = node.next;
+            }
+            System.out.println(node.data);
+        }
+    }
+
+    @Override
+    public void addFirst(T data){
+        Node<T> node = new Node<>(data);
+        node.data = data;
+        node.next = head;
+
+        head = node;
+    }
+
+    @Override
+    public void addLast(T data) {
+        Node<T> newNode = new Node<>(data);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node<T> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+    }
+
+
+    @Override
+    public void remove(int index){
         if (index == 0){
             head = head.next;
         }
@@ -71,7 +105,33 @@ public class LinkedList<T> {
         }
     }
 
-    public void showByIndex(int index){
+    @Override
+    public void removeFirst() {
+        if (head == null) {
+            System.out.println("List is empty");
+        }
+        head = head.next;
+    }
+
+    @Override
+    public void removeLast() {
+        if (head == null) {
+            System.out.println("List is empty");
+        }
+        if (head.next == null) {
+            head = null;
+        } else {
+            Node<T> current = head;
+            while (current.next.next != null) {
+                current = current.next;
+            }
+            current.next = null;
+        }
+    }
+
+
+    @Override
+    public T get(int index){
         Node<T> node = head;
 
         if (index == 0){
@@ -83,9 +143,11 @@ public class LinkedList<T> {
             }
             System.out.println(node.data);
         }
+        return null;
     }
 
     //just a simple bubble-sort
+    @Override
     public void sort() {
         if (head == null || head.next == null) {
             return;
@@ -110,7 +172,8 @@ public class LinkedList<T> {
         } while (swapped);
     }
 
-    public void size(){
+    @Override
+    public int size(){
         int size = 0;
         Node<T> node = head;
         while (node.next != null){
@@ -119,8 +182,10 @@ public class LinkedList<T> {
         }
         size++;
         System.out.println(size);
+        return size;
     }
 
+    @Override
     public void clear() {
         Node<T> current = null;
         while (current != null){
@@ -129,4 +194,21 @@ public class LinkedList<T> {
         }
         head = null;
     }
+
+    @Override
+    public int indexOf(Object object) {
+        return -1;
+    }
+
+    @Override
+    public int lastIndexOf(Object object) {
+        return 0;
+    }
+
+    @Override
+    public boolean exists(Object object) {
+        return false;
+    }
+
+
 }
